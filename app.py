@@ -8,3 +8,5 @@ app.register_blueprint(app_list_se)
 
 if __name__ == '__main__':
     app.run()
+
+
