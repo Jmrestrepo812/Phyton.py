@@ -67,12 +67,6 @@ def eliminate_data(id):
                     response=json.dumps(list_se_service.eliminate_data(id)),mimetype="application/json")
 
 
-@app_list_se.route('/list_se/delete_student_by_position/<pos>')
-def eliminate_student_by_position(pos):
-
-    return Response(status=200,
-                    response=json.dumps(list_se_service.eliminate_student_by_position(pos)),mimetype="application/json")
-
 
 @app_list_se.route('/list_se/Order_by_gender')
 def grup_by_gender():

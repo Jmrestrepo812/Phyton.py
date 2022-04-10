@@ -13,8 +13,6 @@ class ListSE:
             if self.validate_exist(data.identification):
                 raise Exception("Ya existe un estudiante con esa identificacion")
 
-           # if self.validate_posc(data.posicion):
-            #    raise Exception("Ya existe un estudiante con esa posicion ")
 
             temp = self.head
             while temp.next != None:
@@ -30,16 +28,6 @@ class ListSE:
                 return  True
             temp= temp.next
         return False
-
-    def validate_posc(self, pos):
-        temp=self.head
-        while temp != None:
-            if temp.data.posicion == pos:
-                return  True
-            temp= temp.next
-        return False
-
-
 
     def add_to_sart(self, data:Student):
         if self.head == None:
@@ -84,16 +72,7 @@ class ListSE:
                     break;
                 temp=temp.next
 
-    def eliminate_student_by_position(self,pos):
-        if pos == self.head.data.posicion:
-            self.head = self.head.next
-        else:
-            temp = self.head
-            while temp.next != None:
-                if temp.next.data.posicion == pos:
-                    temp.next = temp.next.next
-                    break;
-                temp = temp.next
+
 
     def grup_by_gender(self):
         list_cp = ListSE()
