@@ -72,6 +72,16 @@ class ListSE:
                     break;
                 temp=temp.next
 
+    def delete_student_by_position(self,position):
+        if position == self.head.data.position:
+            self.head=self.head.next
+        else:
+            temp = self.head
+            while temp.next != None:
+                if temp.next.data.position == position:
+                    temp.next=temp.next.next
+                    break;
+                temp=temp.next
 
 
     def grup_by_gender(self):
@@ -109,13 +119,15 @@ class ListSE:
         tempM=list_cp_man.head
         tempW = list_cp_women.head
 
-        for x in range(1, MayorLongitud):
+        while MayorLongitud > 0:
+        #for x in range(1, MayorLongitud):
             if tempM.data!= None:
                 list_cp_bought_genders.add(tempM.data)
+                tempM = tempM.next
             if tempW.data != None:
                 list_cp_bought_genders.add(tempW.data)
-            tempM = tempM.next
-            tempW = tempW.next
+                tempW = tempW.next
+            MayorLongitud = MayorLongitud-1
         self.head = list_cp_bought_genders.head
 
 

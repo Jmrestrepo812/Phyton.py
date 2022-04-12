@@ -78,6 +78,11 @@ class ListSEService:
         return {"message": "Eliminacion correta de la lista"}
 
 
+    def eliminate_student_by_position(self, position):
+        self.students.delete_student_by_position(position)
+        return {"message": "Eliminacion correta de la lista"}
+
+
     def grup_by_gender(self):
         if self.students.head == None:
             return {"message":"La lista esta vacia"}
@@ -88,6 +93,8 @@ class ListSEService:
     def group_intercalate(self):
         self.students.group_intercalate()
         return {"message": "Lista intercalada por generos la lista"}
+
+
 
 
 
