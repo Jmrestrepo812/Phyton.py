@@ -64,7 +64,7 @@ def changeXtremes():
 def eliminate_data(id):
 
     return Response(status=200,
-                    response=json.dumps(list_se_service.eliminate_data(id)),mimetype="application/json")
+                    response=json.dumps(list_se_service.eliminate_data(int(id))),mimetype="application/json")
 
 @app_list_se.route('/list_se/delete_student_by_position/<position>')
 def eliminate_student_by_position(position):
@@ -84,3 +84,23 @@ def group_intercalate():
 
     return Response(status=200,
                     response=json.dumps(list_se_service.group_intercalate()),mimetype="application/json")
+
+
+@app_list_se.route('/list_se/insert_student_by_position/<position>',methods=['POST'])
+def insert_student_by_position(position):
+
+    data = request.json
+    try:
+        list_se_service.insert_by_position(int(position),data)
+        return Response(status=200,response=json.dumps({"message":"Adicionado exitosamente"}),
+                    mimetype="application/json")
+    except Exception as e:
+        return Response(status=409, response=json.dumps({"message": str (e)}),
+                        mimetype="application/json")
+
+
+@app_list_se.route('/list_se/Order_by_gender_and_age')
+def grup_by_gender_and_age():
+
+    return Response(status=200,
+                    response=json.dumps(list_se_service.grup_by_gender_and_age()),mimetype="application/json")

@@ -5,6 +5,7 @@ from model.student import Student
 class ListSE:
     def __init__(self):
         self.head= None
+        self.count = 0
 
     def add(self, data):
         if self.head == None:
@@ -20,6 +21,7 @@ class ListSE:
 
                 #posicionados en el ultimo
             temp.next = Node(data)
+        self.count +=1
 
     def validate_exist(self, id):
         temp=self.head
@@ -33,9 +35,13 @@ class ListSE:
         if self.head == None:
             self.head= Node(data)
         else:
+            if self.validate_exist(data.identification):
+                raise Exception("Ya existe un estudiante con esa identificacion")
             temp=Node(data)
             temp.next = self.head
             self.head = temp
+
+        self.count+=1
 
     def invert(self):
         if self.head !=None:
@@ -72,16 +78,43 @@ class ListSE:
                     break;
                 temp=temp.next
 
-    def delete_student_by_position(self,position):
-        if position == self.head.data.position:
-            self.head=self.head.next
+    def delete_student_by_position(self,p):
+        posicion = 1
+        if p == 1 and self.head.data != None:
+            self.head = self.head.next
+
+        temp = self.head
+        while temp.next != None:
+            posicion=posicion+1
+            if temp.next.data !=  None and p == posicion:
+                temp.next = temp.next.next
+                break;
+            temp = temp.next
+
+    def insert_student_by_position(self,position ,data:Student):
+        if position > 0 :
+            if position == 1:
+                self.add_to_sart(data)
+
+            else:
+                temp = self.head
+                count = 1
+                while temp != None:
+                    if count == position - 1:
+                        new_node = Node(data)
+                        if self.validate_exist(data.identification):
+                            raise Exception("Ya existe un estudiante con esa identificacion")
+                        new_node.next = temp.next
+                        temp.next = new_node
+                        self.count = +1
+                        break
+                    temp = temp.next
+                    count = +1
+
+            self.count = +1
         else:
-            temp = self.head
-            while temp.next != None:
-                if temp.next.data.position == position:
-                    temp.next=temp.next.next
-                    break;
-                temp=temp.next
+            raise Exception("La posición no es válida")
+
 
 
     def grup_by_gender(self):
@@ -104,7 +137,7 @@ class ListSE:
         temp = self.head
         while temp != None:
             if temp.data.gender == 1:
-                list_cp_man.add_to_sart(temp.data)
+                list_cp_man.add(temp.data)
                 contadoM=contadoM+1
             if temp.data.gender == 2:
                 contadoW=contadoW+1
@@ -116,19 +149,76 @@ class ListSE:
         else:
             MayorLongitud = contadoW
 
-        tempM=list_cp_man.head
+        tempM =list_cp_man.head
         tempW = list_cp_women.head
 
-        while MayorLongitud > 0:
-        #for x in range(1, MayorLongitud):
-            if tempM.data!= None:
-                list_cp_bought_genders.add(tempM.data)
-                tempM = tempM.next
-            if tempW.data != None:
+        #while MayorLongitud > 0:
+        for x in range(1, MayorLongitud):
+
+            if tempW != None:
                 list_cp_bought_genders.add(tempW.data)
                 tempW = tempW.next
-            MayorLongitud = MayorLongitud-1
+            if tempM != None:
+                list_cp_bought_genders.add(tempM.data)
+                tempM = tempM.next
+            break
+            #MayorLongitud = MayorLongitud-1
         self.head = list_cp_bought_genders.head
+
+
+    def grup_by_gender_and_age(self):
+        ageMens=[]
+        ageWomens=[]
+        list_cp_man = ListSE()
+        list_cp_women = ListSE()
+        list_cp_bought_genders = ListSE()
+        temp= self.head
+
+        while temp != None:
+            if temp.data.gender == 1:
+                list_cp_man.add(temp.data)
+                ageMens.append(temp.data.age)
+            if temp.data.gender == 2:
+                list_cp_women.add(temp.data)
+                ageWomens.append(temp.data.age)
+            temp = temp.next
+        print(ageMens)
+        print(ageWomens)
+        #sortedListMens=\
+        ageMens.sort()
+        #sortedListWomens=\
+        ageWomens.sort()
+
+        list_cp_mans_sorted = ListSE()
+        list_cp_womens_sorted = ListSE()
+
+        for edadMens in ageMens:
+            temp=list_cp_man.head
+            while temp.next != None:
+                if edadMens == temp.data.age:
+                    list_cp_mans_sorted.add(temp.data)
+                temp = temp.next
+
+        for edadWomens in ageWomens:
+            temp=list_cp_women.head
+            while temp.next != None:
+                if edadWomens == temp.data.age:
+                    list_cp_womens_sorted.add(temp.data)
+                temp = temp.next
+
+
+
+        tempwomensSorted = list_cp_womens_sorted.head
+        while tempwomensSorted != None:
+            list_cp_bought_genders.add(tempwomensSorted.data)
+            tempwomensSorted= tempwomensSorted.next
+
+        tempMensSorted = list_cp_mans_sorted.head
+        while tempMensSorted != None:
+            list_cp_bought_genders.add(tempMensSorted.data)
+            tempMensSorted = tempMensSorted.next
+
+        self.head=list_cp_bought_genders.head
 
 
 
