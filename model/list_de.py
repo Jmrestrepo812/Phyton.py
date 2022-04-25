@@ -29,8 +29,9 @@ class ListDe:
             while temp.next != None:
                 temp = temp.next
 
-            temp.next = Node(data)
-            temp.next.prev=temp
+            new_node=Node(data)
+            temp.next = new_node
+            new_node.prev=temp
 
         self.count+=1
 
@@ -99,39 +100,39 @@ class ListDe:
                 posicion = posicion + 1
                 temp = temp.next
 
-            if temp.prev != None:
+            if temp.next != None:
                 temp.prev.next = temp.next
                 temp.next.prev = temp.prev
-        self.count = +1
+        self.count-=1
 
 
     def delete_by_id(self, id):
-
-        if self.head.data.identificacion == id:
+        if self.head.data.identification == id:
             if self.head.next == None:
                 self.head = None
                 return
             elif self.head.next != None:
                 self.head = self.head.next
                 self.head.prev = None
-
-        temp=self.head
-        while temp.next is not None:
-            temp = temp.next
-        temp.prev.next = None
-
-        if temp.data.identification==id:
-            temp.prev.next = None
         else:
+            ##eliminar intermedio
             temp = self.head
-            while temp.next != None:
+            while temp.next != None :
                 if temp.data.identification == id:
-                    break;
+                    break
                 temp = temp.next
-
-            if temp.prev != None:
+            if temp.next != None:
                 temp.prev.next = temp.next
                 temp.next.prev = temp.prev
+            else:
+                ##eliminar dato final
+                if temp.data.identification == id:
+                    temp.prev.next = None
+        self.count = -1
+
+
+
+
 
 
 
