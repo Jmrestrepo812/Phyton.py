@@ -10,7 +10,7 @@ list_circle_service = ListCircle()
 def get_all_students():
 
     return Response(status=200,
-                    response=json.dumps(list_circle_service.listAllStudentsListCircle()
+                    response=json.dumps(list_circle_service.get_all_students()
                     ,cls=UtilEncoder),mimetype="application/json")
 
 
@@ -31,7 +31,7 @@ def add_student_to_start():
 
     data = request.json
     try:
-        list_circle_service.add_to_sart(data)
+        list_circle_service.add_student_to_start(data)
         return Response(status=200,response=json.dumps({"message":"Adicionado exitosamente"}),
                     mimetype="application/json")
     except Exception as e:

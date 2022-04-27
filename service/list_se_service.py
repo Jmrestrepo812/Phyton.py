@@ -82,8 +82,11 @@ class ListSEService:
 
 
     def eliminate_student_by_position(self, p):
-        self.students.delete_student_by_position(p)
-        return {"message": "Eliminacion correta de la lista"}
+        if self.students.head == None:
+            return {"message":"La lista esta vacia"}
+        else:
+            self.students.delete_student_by_position(p)
+            return {"message": "Eliminacion correta de la lista"}
 
 
     def grup_by_gender(self):

@@ -42,7 +42,7 @@ class ListSEService:
 
         if encontro > 0:
             student = Student(data)
-            self.students.add(student)
+            self.students.add_to_sart(student)
         else:
             raise Exception("La ciudad no es valida")
 
