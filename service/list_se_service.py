@@ -106,6 +106,12 @@ class ListSEService:
         self.students.insert_student_by_position(p, student)
         return {"message": "Inserccion realizada a la lista"}
 
+    def intercalate_by_gender(self):
+        if self.students.head == None:
+            return {"message":"La lista esta vacia"}
+        else:
+            self.students.group_intercalate()
+
 
 
 

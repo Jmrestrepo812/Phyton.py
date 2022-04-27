@@ -6,7 +6,15 @@ app_list_circle = Blueprint("app_list_se",__name__)
 
 list_circle_service = ListCircle()
 
-@app_list_circle.route('/list_se',methods=['POST'])
+@app_list_circle.route('/list_circle/all')
+def get_all_students():
+
+    return Response(status=200,
+                    response=json.dumps(list_circle_service.listAllStudentsListCircle()
+                    ,cls=UtilEncoder),mimetype="application/json")
+
+
+@app_list_circle.route('/list_circle',methods=['POST'])
 def save_student():
     data = request.json
     try:
@@ -16,3 +24,26 @@ def save_student():
     except Exception as e:
         return Response(status=409, response=json.dumps({"message": str (e)}),
                         mimetype="application/json")
+
+
+@app_list_circle.route('/list_circle_add_to_start',methods=['POST'])
+def add_student_to_start():
+
+    data = request.json
+    try:
+        list_circle_service.add_to_sart(data)
+        return Response(status=200,response=json.dumps({"message":"Adicionado exitosamente"}),
+                    mimetype="application/json")
+    except Exception as e:
+        return Response(status=409, response=json.dumps({"message": str (e)}),
+                        mimetype="application/json")
+
+
+@app_list_circle.route('/list_circle_count/all')
+def get_all_students():
+
+    return Response(status=200,
+                    response=json.dumps(list_circle_service.count()
+                    ,cls=UtilEncoder),mimetype="application/json")
+
+

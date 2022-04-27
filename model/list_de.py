@@ -132,10 +132,6 @@ class ListDe:
 
 
 
-
-
-
-
     def insert_student_by_position(self, position, data: Student):
         if position < 0 :
             raise Exception("Estudiante fura del rango")
@@ -159,8 +155,6 @@ class ListDe:
             node.prev = pres
         self.count = +1
 
-
-
     def grup_by_gender(self):
         list_cp = ListDe()
         temp = self.head
@@ -171,3 +165,42 @@ class ListDe:
                 list_cp.add_student_listde(temp.data)
             temp = temp.next
         self.head = list_cp.head
+
+    def group_intercalate(self):
+        contadoM=0
+        contadoW=0
+        list_cp_man = ListDe()
+        list_cp_women = ListDe()
+        list_cp_bought_genders = ListDe()
+        temp = self.head
+        while temp != None:
+            if temp.data.gender == 1:
+                list_cp_man.add_student_listde(temp.data)
+                contadoM=contadoM+1
+            if temp.data.gender == 2:
+                contadoW=contadoW+1
+                list_cp_women.add_student_listde(temp.data)
+            temp = temp.next
+
+        if contadoM>contadoW:
+            MayorLongitud=contadoM
+        else:
+            MayorLongitud = contadoW
+
+        tempM =list_cp_man.head
+        tempW = list_cp_women.head
+
+        while MayorLongitud > 0:
+        ##for x in range(1, MayorLongitud):
+
+            if tempW != None:
+                if tempW.data != None:
+                    list_cp_bought_genders.add_student_listde(tempW.data)
+                    tempW = tempW.next
+
+            if tempM != None:
+                if tempM.data != None:
+                    list_cp_bought_genders.add_student_listde(tempM.data)
+                    tempM = tempM.next
+            MayorLongitud = MayorLongitud-1
+        self.head = list_cp_bought_genders.head

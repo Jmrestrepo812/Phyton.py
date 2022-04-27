@@ -7,6 +7,7 @@ app = Flask(__name__)
 app.register_blueprint(app_student)
 app.register_blueprint(app_list_se)
 app.register_blueprint(app_list_de)
+
 if __name__ == '__main__':
     app.run()
 

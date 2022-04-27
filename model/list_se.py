@@ -152,17 +152,19 @@ class ListSE:
         tempM =list_cp_man.head
         tempW = list_cp_women.head
 
-        #while MayorLongitud > 0:
-        for x in range(1, MayorLongitud):
+        while MayorLongitud > 0:
+        ##for x in range(1, MayorLongitud):
 
             if tempW != None:
-                list_cp_bought_genders.add(tempW.data)
-                tempW = tempW.next
+                if tempW.data != None:
+                    list_cp_bought_genders.add(tempW.data)
+                    tempW = tempW.next
+
             if tempM != None:
-                list_cp_bought_genders.add(tempM.data)
-                tempM = tempM.next
-            break
-            #MayorLongitud = MayorLongitud-1
+                if tempM.data != None:
+                    list_cp_bought_genders.add(tempM.data)
+                    tempM = tempM.next
+            MayorLongitud = MayorLongitud-1
         self.head = list_cp_bought_genders.head
 
 
