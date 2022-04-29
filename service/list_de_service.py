@@ -95,3 +95,10 @@ class ListDEService:
         else:
             self.students.group_intercalate()
             return {"message": "Lista intercalada por generos individualmente la lista"}
+
+    def group_intercalate_by_gender_and_age(self):
+        if self.students.head == None:
+            return {"message":"La lista esta vacia"}
+        else:
+            self.students.group_by_gender_and_age()
+            return {"message": "Lista intercalada por generos individualmente la lista"}

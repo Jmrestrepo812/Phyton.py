@@ -21,7 +21,7 @@ class ListSE:
 
                 #posicionados en el ultimo
             temp.next = Node(data)
-        self.count +=1
+        self.count =+1
 
     def validate_exist(self, id):
         temp=self.head
@@ -41,7 +41,7 @@ class ListSE:
             temp.next = self.head
             self.head = temp
 
-        self.count+=1
+        self.count=+1
 
     def invert(self):
         if self.head !=None:
@@ -95,23 +95,32 @@ class ListSE:
         if position > 0 :
             if position == 1:
                 self.add_to_sart(data)
-
-            else:
+            elif position == self.count:
+                node=Node(data)
                 temp = self.head
-                count = 1
-                while temp != None:
-                    if count == position - 1:
-                        new_node = Node(data)
-                        if self.validate_exist(data.identification):
-                            raise Exception("Ya existe un estudiante con esa identificacion")
-                        new_node.next = temp.next
-                        temp.next = new_node
-                        self.count = +1
-                        break
+                while temp.next.next != None:
+
                     temp = temp.next
-                    count = +1
+                node.next = temp.next
+                temp.next = node
+            else:
+
+                posicion = 2
+                temp = self.head
+                while temp.next != None and position != posicion:
+                    posicion = posicion + 1
+                    temp = temp.next
+
+                new_node = Node(data)
+
+                if temp.next != None:
+                    if self.validate_exist(data.identification):
+                        raise Exception("Ya existe un estudiante con esa identificacion")
+                    new_node.next = temp.next
+                    temp.next = new_node
 
             self.count = +1
+
         else:
             raise Exception("La posición no es válida")
 
@@ -173,9 +182,8 @@ class ListSE:
         ageWomens=[]
         list_cp_man = ListSE()
         list_cp_women = ListSE()
-        list_cp_bought_genders = ListSE()
-        temp= self.head
 
+        temp= self.head
         while temp != None:
             if temp.data.gender == 1:
                 list_cp_man.add(temp.data)
@@ -186,41 +194,40 @@ class ListSE:
             temp = temp.next
         print(ageMens)
         print(ageWomens)
-        #sortedListMens=\
         ageMens.sort()
-        #sortedListWomens=\
         ageWomens.sort()
 
         list_cp_mans_sorted = ListSE()
         list_cp_womens_sorted = ListSE()
 
         for edadMens in ageMens:
-            temp=list_cp_man.head
-            while temp.next != None:
+            temp = list_cp_man.head
+            while temp != None:
                 if edadMens == temp.data.age:
                     list_cp_mans_sorted.add(temp.data)
                 temp = temp.next
 
         for edadWomens in ageWomens:
-            temp=list_cp_women.head
-            while temp.next != None:
+            temp = list_cp_women.head
+            while temp != None:
                 if edadWomens == temp.data.age:
-                    list_cp_womens_sorted.add(temp.data)
+                    list_cp_womens_sorted.add_to_sart(temp.data)
                 temp = temp.next
 
-
-
-        tempwomensSorted = list_cp_womens_sorted.head
-        while tempwomensSorted != None:
-            list_cp_bought_genders.add(tempwomensSorted.data)
-            tempwomensSorted= tempwomensSorted.next
+        list_bought_genders=ListSE()
+        tempWomensSorted=list_cp_womens_sorted.head
+        while tempWomensSorted != None:
+            list_bought_genders.add(tempWomensSorted.data)
+            tempWomensSorted=tempWomensSorted.next
 
         tempMensSorted = list_cp_mans_sorted.head
         while tempMensSorted != None:
-            list_cp_bought_genders.add(tempMensSorted.data)
+            list_bought_genders.add(tempMensSorted.data)
             tempMensSorted = tempMensSorted.next
 
-        self.head=list_cp_bought_genders.head
+        self.head=list_bought_genders.head
+
+
 
 
 

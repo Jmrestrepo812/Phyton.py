@@ -23,7 +23,7 @@ class ListCircle:
 
     def validate_exist(self, id):
         temp=self.head
-        while temp != None:
+        while temp.next != self.head:
             if temp.data.identification == id:
                 return  True
             temp= temp.next
@@ -51,10 +51,8 @@ class ListCircle:
         temp = self.head
         while temp.next != self.head:
             list.append(temp.data)
-
             temp = temp.next
-
-        list.append(temp)
+        list.append(temp.data)
         return list
 
     def count(self):

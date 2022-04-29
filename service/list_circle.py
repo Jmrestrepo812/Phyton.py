@@ -2,7 +2,7 @@
 from model.student import Student
 from model.list_circle import ListCircle
 
-class ListSEService:
+class ListCircularService:
     cities = ['Manizales', 'Pereira', 'Chinchiná', 'Armenia']
 
     def __init__(self):

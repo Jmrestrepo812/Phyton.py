@@ -95,3 +95,9 @@ def group_intercalate_by_gender():
 
     return Response(status=200,
                     response=json.dumps(list_de_service.group_intercalate_by_gender()),mimetype="application/json")
+
+@app_list_de.route('/list_de/intercalate_by_gender_and_age')
+def group_intercalate_by_gender_and_age():
+
+    return Response(status=200,
+                    response=json.dumps(list_de_service.group_intercalate_by_gender_and_age()),mimetype="application/json")

@@ -204,3 +204,53 @@ class ListDe:
                     tempM = tempM.next
             MayorLongitud = MayorLongitud-1
         self.head = list_cp_bought_genders.head
+
+    def group_by_gender_and_age(self):
+        ageMens = []
+        ageWomens = []
+        list_cp_man = ListDe()
+        list_cp_women = ListDe()
+
+        temp = self.head
+        while temp != None:
+            if temp.data.gender == 1:
+                list_cp_man.add_student_listde(temp.data)
+                ageMens.append(temp.data.age)
+            if temp.data.gender == 2:
+                list_cp_women.add_student_listde(temp.data)
+                ageWomens.append(temp.data.age)
+            temp = temp.next
+        print(ageMens)
+        print(ageWomens)
+        ageMens.sort()
+        ageWomens.sort()
+
+        list_cp_mans_sorted = ListDe()
+        list_cp_womens_sorted = ListDe()
+
+        for edadMens in ageMens:
+            temp = list_cp_man.head
+            while temp != None:
+                if edadMens == temp.data.age:
+                    list_cp_mans_sorted.add_student_listde(temp.data)
+                temp = temp.next
+
+        for edadWomens in ageWomens:
+            temp = list_cp_women.head
+            while temp != None:
+                if edadWomens == temp.data.age:
+                    list_cp_womens_sorted.add_to_sart(temp.data)
+                temp = temp.next
+
+        list_bought_genders = ListDe()
+        tempWomensSorted = list_cp_womens_sorted.head
+        while tempWomensSorted != None:
+            list_bought_genders.add_student_listde(tempWomensSorted.data)
+            tempWomensSorted = tempWomensSorted.next
+
+        tempMensSorted = list_cp_mans_sorted.head
+        while tempMensSorted != None:
+            list_bought_genders.add_student_listde(tempMensSorted.data)
+            tempMensSorted = tempMensSorted.next
+
+        self.head = list_bought_genders.head

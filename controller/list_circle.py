@@ -1,10 +1,10 @@
-from service.list_circle import ListCircle
+from service.list_circle import ListCircularService
 from flask import Response,json,jsonify,Blueprint, request
 from util.util_encoder import UtilEncoder
 
-app_list_circle = Blueprint("app_list_se",__name__)
+app_list_circle = Blueprint("app_list_circle",__name__)
 
-list_circle_service = ListCircle()
+list_circle_service = ListCircularService()
 
 @app_list_circle.route('/list_circle/all')
 def get_all_students():
@@ -40,7 +40,7 @@ def add_student_to_start():
 
 
 @app_list_circle.route('/list_circle_count/all')
-def get_all_students():
+def get_count_students():
 
     return Response(status=200,
                     response=json.dumps(list_circle_service.count()
