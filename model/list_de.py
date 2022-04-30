@@ -87,6 +87,7 @@ class ListDe:
             raise Exception("Estudiante fura del rango")
         elif position == 1:
             self.head=self.head.next
+            self.head.prev=None
         elif position == self.count:
             temp = self.head
             while temp.next != None:
@@ -155,6 +156,7 @@ class ListDe:
             node.prev = pres
         self.count = +1
 
+
     def grup_by_gender(self):
         list_cp = ListDe()
         temp = self.head
@@ -192,7 +194,6 @@ class ListDe:
 
         while MayorLongitud > 0:
         ##for x in range(1, MayorLongitud):
-
             if tempW != None:
                 if tempW.data != None:
                     list_cp_bought_genders.add_student_listde(tempW.data)

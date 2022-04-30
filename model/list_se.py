@@ -77,6 +77,7 @@ class ListSE:
                     temp.next=temp.next.next
                     break;
                 temp=temp.next
+        self.count = -1
 
     def delete_student_by_position(self,p):
         posicion = 1
@@ -90,6 +91,7 @@ class ListSE:
                 temp.next = temp.next.next
                 break;
             temp = temp.next
+        self.count = -1
 
     def insert_student_by_position(self,position ,data:Student):
         if position > 0 :
